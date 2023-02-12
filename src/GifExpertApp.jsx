@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { AddCategory } from "./components/AddCategory";
 
 export const GifExpertApp = () => {
     //almacenar las categorias con el estado, se inicia siempre como un arreglo
@@ -11,8 +12,11 @@ export const GifExpertApp = () => {
         <>
             <h1>GifExperApp</h1>
 
+            {/* Input */}
+            <AddCategory setCategories = {setCategories} />
+
             {/* Listado de Gif */}
-            <button onClick={onAddCategory}>agregar</button>
+            
             <ol>
                 {
                     //devolvemos una lista ordenada para nuestra categoria
