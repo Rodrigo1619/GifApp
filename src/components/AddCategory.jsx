@@ -1,26 +1,23 @@
 import { useState } from "react";
 
 
-export const AddCategory = ({setCategories}) => { //setCategories viene de las props del useState que tenemos en gifExpertApp
+export const AddCategory = ({onNewCategory}) => { //onNewCategory viene de las props del useState que tenemos en gifExpertApp
 
     const [inputValue, setinputValue] = useState('');
-    //para el onchange
+    //para el onchange y no nos de error
     const onInputChange = ({target})=>{ //EN EL EVENTO TENEMOS TARGET
-        //console.log(target.value);
         setinputValue(target.value); //se podra ver en el input lo que estamos escribiendo
     }
 
     //para el submit del formulario
     const onSubmit = (evento)=>{
         evento.preventDefault(); //prevenimos que se recargue
-        //console.log(inputValue); // y mostramos en consola el valor del input
-
+    
         //que el usuario no meta caracteres vacios y que sea solo 1, trim para borrar espacio al principio y al final
         if(inputValue.trim().length <= 1) return;
 
-        //mandamos a llamar setCategories y hacemos que no se sobre escriba el arreglo mandando a llamar las categories en su estado
-        //y con el ...categories lo que esta en ese arreglo
-        setCategories(categories => [inputValue, ...categories]);
+        //solo mandamos el valor del input y para que siempre se muestra en mayuscula
+        onNewCategory(inputValue.trim().toUpperCase()); 
 
         //limpiamos nuestra barra de busqueda
         setinputValue('');
